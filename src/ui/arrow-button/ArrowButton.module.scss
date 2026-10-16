@@ -9,20 +9,20 @@
 	width: 100px;
 	height: 100px;
 	background-color: #000000;
-	border-right: 1px;
-	transition: transform 0.5s ease;
-}
+	border-right: 1px solid #cccccc; // fixed
+	transition: transform 0.5s ease, background-color 0.2s ease; // fixed
 
-.container:hover {
-	background-color: #ffc802;
-}
+	&.container_open {
+		transform: translate(616px);
+	}
 
-.container:active {
-	background-color: #787878;
-}
+	&:hover {
+		background: #ffc802;
+	}
 
-.container_open {
-	transform: translate(616px);
+	&:active {
+		background: #787878;
+	}
 }
 
 .arrow {
@@ -31,8 +31,8 @@
 	height: 48px;
 	transform: rotate(180deg);
 	transition: transform 0.5s ease;
-}
 
-.arrow_open {
-	transform: rotate(0deg);
+	&.arrow_open {
+		transform: rotate(0deg);
+	}
 }

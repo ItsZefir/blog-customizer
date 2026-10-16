@@ -5,7 +5,7 @@ import { OptionType } from 'src/constants/articleProps';
 import { Text } from 'src/ui/text';
 import arrowDown from 'src/images/arrow-down.svg';
 import { Option } from './Option';
-import { isFontFamilyClass } from './helpers/isFontFamilyClass';
+import { isFontFamilyClass } from 'src/ui/select/tools/isFontFamilyClass';
 import { useEnterSubmit } from './hooks/useEnterSubmit';
 import { useOutsideClickClose } from './hooks/useOutsideClickClose';
 
@@ -25,7 +25,6 @@ export const Select = (props: SelectProps) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const rootRef = useRef<HTMLDivElement>(null);
 	const placeholderRef = useRef<HTMLDivElement>(null);
-	const optionClassName = selected?.optionClassName ?? '';
 
 	useOutsideClickClose({
 		isOpen,
@@ -61,11 +60,15 @@ export const Select = (props: SelectProps) => {
 				ref={rootRef}
 				data-is-active={isOpen}
 				data-testid='selectWrapper'>
-				<img src={arrowDown} alt='иконка стрелочки' className={styles.arrow} />
+				<img
+					src={arrowDown}
+					alt='иконка стрелки'
+					className={clsx(styles.arrow, { [styles.arrow_open]: isOpen })}
+				/>
 				<div
 					className={clsx(
 						styles.placeholder,
-						(styles as Record<string, string>)[optionClassName]
+						styles[selected?.optionClassName || '']
 					)}
 					data-status={status}
 					data-selected={!!selected?.value}

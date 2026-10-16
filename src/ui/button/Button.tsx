@@ -1,28 +1,37 @@
 import { Text } from 'src/ui/text';
-
 import styles from './Button.module.scss';
-import { clsx } from 'clsx';
 
 export const Button = ({
 	title,
 	onClick,
-	htmlType,
-	type,
+	htmlType = 'button',
+	type = 'default',
 }: {
 	title: string;
 	onClick?: () => void;
-	htmlType?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
-	type: 'apply' | 'clear';
+	htmlType?: 'button' | 'submit' | 'reset';
+	type?: 'apply' | 'clear' | 'default';
 }) => {
+	const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+		// Если это кнопка сброса, предотвращаем стандартный сброс формы
+		if (htmlType === 'reset') {
+			e.preventDefault();
+		}
+		// Если это кнопка отправки, предотвращаем перезагрузку страницы
+		if (htmlType === 'submit') {
+			e.preventDefault();
+		}
+		onClick?.();
+	};
+
+	// Определяем класс по типу (apply -> primary, clear -> secondary)
+	const buttonClass = type === 'apply' ? styles.primary : styles.secondary;
+
 	return (
 		<button
-			className={clsx(
-				styles.button,
-				{ [styles.button_apply]: type === 'apply' },
-				{ [styles.button_clear]: type === 'clear' }
-			)}
+			className={`${styles.button} ${buttonClass}`}
 			type={htmlType}
-			onClick={onClick}>
+			onClick={handleClick}>
 			<Text weight={800} uppercase>
 				{title}
 			</Text>

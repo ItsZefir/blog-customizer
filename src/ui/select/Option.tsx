@@ -3,9 +3,8 @@ import type { MouseEventHandler } from 'react';
 import clsx from 'clsx';
 import { OptionType } from 'src/constants/articleProps';
 import { Text } from 'src/ui/text';
-import { isFontFamilyClass } from './helpers/isFontFamilyClass';
+import { isFontFamilyClass } from './tools/isFontFamilyClass';
 import { useEnterOptionSubmit } from './hooks/useEnterOptionSubmit';
-
 import styles from './Select.module.scss';
 
 type OptionProps = {

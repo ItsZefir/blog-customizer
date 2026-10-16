@@ -5,25 +5,25 @@ import { FontFamiliesClasses } from 'src/constants/articleProps';
 import styles from './index.module.scss';
 
 type TextProps = {
-	/** Сам текст для вывода */
+	/** Text to show */
 	children: ReactNode;
-	/** Тэг которым отрендерить текст */
+	/** Tag that must be used to render text */
 	as?: ElementType;
-	/** Булевая пропса, должен ли текст меняться в зависимости от конфига */
+	/** if text must be changed  */
 	dynamic?: boolean;
-	/** Размер шрифта */
-	size?: 12 | 18 | 22 | 25 | 31 | 38 | 45;
-	/** Вес шрифта */
+	/** font */
+	size?: 12 | 18 | 22 | 25 | 31 | 45;
+	/** font weight */
 	weight?: 400 | 800;
-	/** Стиль шрифта */
+	/** style */
 	fontStyle?: 'italic' | 'normal';
-	/** Булевая пропса, отвечающая должен ли текст быть в верхнем регистре */
+	/** upper case bool props */
 	uppercase?: boolean;
-	/** Выравнивание текста */
+	/** alignment */
 	align?: 'center' | 'left';
-	/** font-family текста */
+	/** font-family  */
 	family?: FontFamiliesClasses;
-	/** Булевая пропса, делает динамическим только семью шрифтов и цвет */
+	/** dynmic font family */
 	dynamicLite?: boolean;
 };
 
